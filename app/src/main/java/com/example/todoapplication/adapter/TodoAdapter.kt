@@ -80,5 +80,13 @@ class TodoAdapter(
             notifyDataSetChanged()
         }
     }
+    fun filterByTitle(title: String) {
+        val filteredList = if (title.isEmpty()) {
+            todoItems.toList() // Return the original list if the search query is empty
+        } else {
+            todoItems.filter { it.title.contains(title, ignoreCase = true) }
+        }
+        updateList(filteredList)
+    }
 
 }

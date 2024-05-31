@@ -8,6 +8,8 @@ import android.app.TimePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.widget.Button
 import android.widget.DatePicker
 import android.widget.EditText
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
     private lateinit var selectTimeButton: Button
     private lateinit var todoTitleEditText: EditText
     private lateinit var todoContentEditText: EditText
+    private lateinit var searchEditText: EditText
     private var selectedHourOfDay: Int = 0
     private var selectedMinute: Int = 0
     private var selectedDateMillis: Long = 0
@@ -48,13 +51,27 @@ class MainActivity : AppCompatActivity(), DatePickerDialog.OnDateSetListener,
         selectTimeButton = findViewById(R.id.selectTimeButton)
         todoTitleEditText = findViewById(R.id.todoTitleEditText)
         todoContentEditText = findViewById(R.id.todoContentEditText)
-
+        searchEditText = findViewById(R.id.searchEditText)
 
         dbHelper = DatabaseHelper(this)
 
 
         alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
 
+        searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Not used
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // Filter the TODO items based on the search query
+                todoAdapter.filterByTitle(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // Not used
+            }
+        })
 
         todoAdapter = TodoAdapter(this, dbHelper.getAllTodoItems().toMutableList(),
             editClickListener = { position ->
