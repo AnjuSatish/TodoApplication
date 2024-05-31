@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/todoTitleEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:layout_margin="16dp"/>
+
+    <EditText
+        android:id="@+id/todoContentEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Note"
+        android:layout_below="@id/todoTitleEditText"
+        android:layout_margin="16dp"/>
+
+    <Button
+        android:id="@+id/selectDateButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:layout_below="@id/todoContentEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_alignParentEnd="true"/>
+
+    <Button
+        android:id="@+id/selectTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Time"
+        android:layout_below="@id/todoContentEditText"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="8dp"
+       />
+
+    <Button
+        android:id="@+id/addTodoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Todo"
+        android:layout_below="@id/selectDateButton"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"/>
+
+    <ListView
+        android:id="@+id/todoListView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/addTodoButton"
+        android:layout_marginTop="16dp"/>
+
+</RelativeLayout>
